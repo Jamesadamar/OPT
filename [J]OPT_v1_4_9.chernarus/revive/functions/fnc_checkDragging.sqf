@@ -18,7 +18,6 @@
 params ["_target", "_caller"];
 
 private _return = false;
-
 private _isPlayerUnconscious = _caller getVariable "FAR_isUnconscious";
 
 if (!alive _caller || {_isPlayerUnconscious == 1} || {FAR_isDragging} || {isNil "_target"} || {!alive _target} || {!isPlayer _target && !FAR_Debugging} || {(_target distance _caller) > 5}) exitWith {
