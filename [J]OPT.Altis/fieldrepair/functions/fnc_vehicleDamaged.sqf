@@ -1,33 +1,52 @@
 /**
-* Author: James
-* determine if vehicle is damaged
+* Description:
+* check all hitpoints of a vehicle for damage above threshold
+*
+* Author:
+* James
 *
 * Arguments:
-* 0: <OBJECT> vehicle
+* 0: <OBJECT> vehicle to check
 *
 * Return Value:
-* 0: <BOOL> true: vehicle is damaged, false: not damaged
+* <BOOL> true - if any hitpoint is damaged greater than a threshold, false - otherwise
+*
+* Server only:
+* no
+*
+* Public:
+* yes
+*
+* Global:
+* no
+*
+* Sideeffects:
+* no
 *
 * Example:
-* [vehicle] call fnc_vehicleDamaged.sqf;
-*
+* [vehicle player] call EFUNC(fieldrepair,vehicleDamaged);
 */
 #include "script_component.hpp"
 
-params [["_veh", objNull]];
+/* PARAMS */
+params
+[
+    ["_veh", objNull, [objNull], 1]
+];
 
-if (_veh isEqualTo objNull) exitWith {false};
+/* VALIDATION */
+private _ret = false;
+if (_veh isEqualTo objNull) exitWith {_ret};
 
+/* CODE BODY */
 private _type = typeOf _veh;
-private _flag = false;
 
-GVAR(repair_hps) apply
+
+private _damagedParts = (getAllHitPointsDamage _veh select 2) select {_x > GVAR(minDamageOnAnyPart)};
+
+if (count _damagedParts > 0) then
 {
-    private _cdmg = _veh getHitPointDamage (_x);
-    if (not isNil {_cdmg} ) then
-    {
-        if (_cdmg > 0.64) exitWith {_flag = true};
-    };
+    _ret = true;
 };
 
-_flag
+_ret

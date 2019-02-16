@@ -31,12 +31,12 @@
     * 9: Other parameters [showDisabled,enableInside,canCollapse,runOnHover,doNotCheckLOS] <ARRAY> (Optional)
     * 10: Modifier function <CODE> (Optional)
     */
-    _action_revive = [
+    private _action_revive = [
         "OPT_REVIVE_REVIVE",
         FAR_REVIVE_ACTION_REVIVE,
         "",
         {
-            params ["_target", "_player", "_params"]; 
+            params ["_target", "_player", "_params"];
 
             [_target, _player, "action_revive"] call FUNC(handleAction);
         },
@@ -47,12 +47,12 @@
         }
     ] call ace_interact_menu_fnc_createAction;
 
-     _action_first_aid = [
+     private _action_first_aid = [
         "OPT_REVIVE_REVIVE",
         FAR_REVIVE_ACTION_FIRST_AID,
         "",
         {
-            params ["_target", "_player", "_params"]; 
+            params ["_target", "_player", "_params"];
 
             [_target, _player, "action_first_aid"] call FUNC(handleAction);
         },
@@ -64,12 +64,12 @@
     ] call ace_interact_menu_fnc_createAction;
 
 
-    _action_stabilize = [
+    private _action_stabilize = [
         "OPT_REVIVE_STABILIZE",
         FAR_REVIVE_ACTION_STABILIZE,
         "",
         {
-            params ["_target", "_player", "_params"]; 
+            params ["_target", "_player", "_params"];
 
             [_target, _player, "action_stabilize"] call FUNC(handleAction);
         },
@@ -80,12 +80,12 @@
         }
     ] call ace_interact_menu_fnc_createAction;
 
-    _action_drag = [
+    private _action_drag = [
         "OPT_REVIVE_DRAG",
         FAR_REVIVE_ACTION_DRAG,
         "",
         {
-            params ["_target", "_player", "_params"]; 
+            params ["_target", "_player", "_params"];
 
             [_target, _player, "action_drag"] call FUNC(handleAction);
         },
@@ -105,8 +105,8 @@
     */
     {
         [
-            _unit, 
-            0, 
+            _unit,
+            0,
             ["ACE_MainActions"],
             _x
         ] call ace_interact_menu_fnc_addActionToObject;

@@ -28,8 +28,8 @@
 
 [] call FUNC(writeFPS);
 
-_message = format ["Endbudget: (NATO %1 | CSAT %2)",  GVARMAIN(nato_budget), GVARMAIN(csat_budget)];
+_message = format ["Endbudget: (NATO %1 | CSAT %2)", GVARMAIN(westBudget), GVARMAIN(eastBudget)];
 ["Budget", _message] call FUNC(write);
 
-_message = format ["Endpunktestand: (NATO %1 | CSAT %2)",  GVARMAIN(nato_points), GVARMAIN(csat_points)];
+_message = format ["Endpunktestand: (NATO %1 | CSAT %2)",  GVARMAIN(westPoints), GVARMAIN(eastPoints)];
 ["Punkte", _message] call FUNC(write);

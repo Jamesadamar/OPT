@@ -1,6 +1,6 @@
 /**
 * Author: James
-* check whether player can revive target 
+* check whether player can revive target
 *
 * Arguments:
 * 0: <OBJECT> target add action is attached to
@@ -31,11 +31,18 @@ private _isTargetUnconscious = _target getVariable "FAR_isUnconscious";
 private _isDragged = _target getVariable "FAR_isDragged";
 private _Handler = _target getVariable "FAR_healer";
 
-// Make sure target is unconscious and _caller is a medic 
-if (_isTargetUnconscious == 1 && {_isDragged == 0} && {isNull _Handler} && {([_caller] call FUNC(isMedic)) || FAR_REVIVE_MODE > 0}) then {
+// Make sure target is unconscious and _caller is a medic
+if
+(
+	_isTargetUnconscious == 1 and
+	_isDragged == 0 and
+	isNull _Handler and
+	[_caller] call FUNC(isMedic)
+) then
+{
 	_return = true;
 	// [ReviveMode] Check if _caller has a Medikit
-	if ( FAR_REVIVE_MODE > 1 && !("Medikit" in (items _caller)) ) then {
+	if (!("Medikit" in (items _caller)) ) then {
 		_return = false;
 	};
 };

@@ -50,7 +50,7 @@ if (_state) then {
                 ["Reparatursystem", REPAIR_SYSTEM_ACTION_REFUEL_DONE, "green"] call EFUNC(gui,message); 
 
                 // update budget initialized by server!
-                [PLAYER_NAME, PLAYER_SIDE, typeOf _vec, GVARMAIN(repairSystem_refuelCost), "-"] call EFUNC(common,updateBudget);
+                [PLAYER_NAME, PLAYER_SIDE, typeOf _vec, GVARMAIN(refuelCost), "-"] call EFUNC(common,updateBudget);
                            
             },
             {
@@ -82,7 +82,7 @@ if (_state) then {
                 ["Reparatursystem", REPAIR_SYSTEM_ACTION_REPAIR_DONE, "green"] call EFUNC(gui,message); 
 
                 // update budget initialized by server!
-                [PLAYER_NAME, PLAYER_SIDE, typeOf _vec, GVARMAIN(repairSystem_repairCost), "-"] call EFUNC(common,updateBudget);
+                [PLAYER_NAME, PLAYER_SIDE, typeOf _vec, GVARMAIN(repairCost), "-"] call EFUNC(common,updateBudget);
             },
             {
                 ["Reparatursystem", REPAIR_SYSTEM_ACTION_REPAIR_ABORT, "red"] call EFUNC(gui,message);

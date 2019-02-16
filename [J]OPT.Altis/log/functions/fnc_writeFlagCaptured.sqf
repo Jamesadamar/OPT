@@ -37,7 +37,7 @@ private _message = "";
 // determine side of player and flag and log with correct message
 switch (_side) do {
     case west: {
-        if (_flag in GVARMAIN(nato_flags)) then {
+        if (_flag in GVARMAIN(westFlags)) then {
             _message = format ["NATO Flagge gesichert von %1", _name];
         } else {
             _message = format ["CSAT Flagge erobert von %1", _name];
@@ -45,7 +45,7 @@ switch (_side) do {
     };
 
     case east: {
-        if (_flag in GVARMAIN(csat_flags)) then {
+        if (_flag in GVARMAIN(eastFlags)) then {
             _message = format ["CSAT Flagge gesichert von %1", _name];
         } else {
             _message = format ["NATO Flagge erobert von %1", _name];

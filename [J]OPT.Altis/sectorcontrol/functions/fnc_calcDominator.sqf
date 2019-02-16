@@ -14,7 +14,7 @@
 */
 #include "script_component.hpp"
 
-private _allFlags = ((GVARMAIN(nato_flags) + GVARMAIN(csat_flags)) apply {_x getVariable ["owner", sideUnknown]});
+private _allFlags = ((GVARMAIN(westFlags) + GVARMAIN(eastFlags)) apply {_x getVariable ["owner", sideUnknown]});
 private _csat_owner = {_x isEqualTo east} count _allFlags;
 private _nato_owner = {_x isEqualTo west} count _allFlags;
 

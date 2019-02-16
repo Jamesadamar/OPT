@@ -30,8 +30,8 @@ private _edit_csat_x = _dialog displayCtrl CSAT_X_IDC;
 private _edit_csat_y = _dialog displayCtrl CSAT_Y_IDC;
 
 // read in coordinates
-private _nato_flag = GVARMAIN(nato_flags) select 0;
-private _csat_flag = GVARMAIN(csat_flags) select 0;
+private _nato_flag = GVARMAIN(westFlags) select 0;
+private _csat_flag = GVARMAIN(eastFlags) select 0;
 private _nato_flag_marker = _nato_flag getVariable [QEGVAR(sectorcontrol,flagMarker), ""];
 private _csat_flag_marker = _csat_flag getVariable [QEGVAR(sectorcontrol,flagMarker), ""];
 private _nato_flag_x = ctrlText NATO_X_IDC;

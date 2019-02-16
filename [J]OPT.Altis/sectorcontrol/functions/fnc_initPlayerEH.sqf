@@ -34,7 +34,7 @@ if (EGVAR(training,on)) then {
         _flag = objNull;
         {
             if (_x getVariable [QGVAR(isFlagMovable), false]) exitWith {_flag = _x};
-        } foreach GVARMAIN(csat_flags) + GVARMAIN(nato_flags);
+        } foreach GVARMAIN(eastFlags) + GVARMAIN(westFlags);
 
         if (_flag isEqualTo objNull) then {
 
@@ -56,36 +56,96 @@ if (EGVAR(training,on)) then {
 };
 
 // EH für Minensperre
-if (GVAR(flagFreeMineZoneOn)) then {
+if (GVAR(flagFreeMineZoneOn)) then 
+{
 
-    GVAR(eh_ace_interactMenuClosed) = ["ace_interactMenuClosed", {
-        _this spawn {
-            _this params ["_menuType"];
+    GVAR(eh_ace_interactMenuClosed) = 
+    [
+        "ace_interactMenuClosed", 
+        {
+            _this spawn {
+                _this params ["_menuType"];
 
-            sleep 0.1;
+                sleep 0.1;
 
-            if (
-                _menuType == 1 and // Eigenmenü
-                ace_explosives_pfeh_running // explosive placing in progress
-            ) then {
-                waitUntil { ace_explosives_placeAction == PLACE_APPROVE; }; // wait until explosive was placed by player
+                if
+                (
+                    _menuType == 1 and // Eigenmenü
+                    ACE_explosives_pfeh_running // explosive placing in progress
+                ) then 
+                {
+                    waitUntil 
+                    { 
+                        ace_explosives_placeAction == PLACE_APPROVE; 
+                    }; // wait until explosive was placed by player
 
-                private _explosive = nearestObject [player, "ACE_Explosives_Place"];
+                    private _explosive = nearestObject [player, "ACE_Explosives_Place"];
 
-                // allow satchel and charge
-                if ((typeOf _explosive) find "SatchelCharge" != -1 or (typeOf _explosive) find "DemoCharge" != -1) exitWith {};    
+                    // allow satchel and charge
+                    if 
+                    (
+                        (typeOf _explosive) find "SatchelCharge" != -1 or
+                        (typeOf _explosive) find "DemoCharge" != -1
+                    ) exitWith {};    
 
-                // only if near flag
-                if ({_explosive distance _x <= GVAR(flagFreeMineZoneRadius)} count (GVARMAIN(nato_flags) + GVARMAIN(csat_flags)) == 0) exitWith {};
+                    // only if near flag
+                    if 
+                    (
+                        {
+                            _explosive distance _x <= GVAR(flagFreeMineZoneRadius)
+                        } count (GVARMAIN(westFlags) + GVARMAIN(eastFlags)) == 0
+                    ) exitWith {};
 
-                deleteVehicle _explosive;    
-                // Warnhinweis
-                private _txt = SECTORCONTROL_MINE_FREE_FLAG_MESSAGE;
-                ["Sperrzone", _txt, "red"] call EFUNC(gui,message);
+                    deleteVehicle _explosive;    
+                    // Warnhinweis
+                    private _txt = SECTORCONTROL_MINE_FREE_FLAG_MESSAGE;
+                    ["Sperrzone", _txt, "red"] call EFUNC(gui,message);
 
+                };
+
+                if 
+                (
+                    _menuType == 1 and // Eigenmenü
+                    player getVariable ["ACE_trenches_isPlacing", false]
+                ) then 
+                {
+                    private _trench = ACE_trenches_trench;
+                    
+                    if 
+                    (
+                        {
+                            _x distance player <= GVAR(flagFreeMineZoneRadius)
+                        } count (GVARMAIN(westFlags) + GVARMAIN(eastFlags)) > 0
+                    ) then {
+                        [player, 1] call ACE_trenches_fnc_placeCancel;
+
+                        private _txt = SECTORCONTROL_TRENCH_FREE_FLAG_MESSAGE;
+                        ["Sperrzone", _txt, "red"] call EFUNC(gui,message);
+                    };
+
+                    waitUntil 
+                    {
+                        !(player getVariable ["ACE_trenches_isPlacing", false])
+                    };
+
+                    _trench = nearestObject [player, ACE_trenches_trenchClass];
+
+                    if 
+                    (
+                        {
+                            _x distance _trench <= GVAR(flagFreeMineZoneRadius)
+                        } count (GVARMAIN(westFlags) + GVARMAIN(eastFlags)) > 0
+                    ) then {
+                        _trench setVariable ["ACE_trenches_progress", 1];
+                        deleteVehicle _trench;
+
+                        private _txt = SECTORCONTROL_TRENCH_FREE_FLAG_MESSAGE;
+                        ["Sperrzone", _txt, "red"] call EFUNC(gui,message);
+                    }
+
+                };
             };
-        };
-
-    }] call CBA_fnc_addEventHandler;
+        }
+    ] call CBA_fnc_addEventHandler;
 };
 

@@ -25,13 +25,12 @@ if (_noHUD) then {
     (QGVAR(layerID) call BIS_fnc_rscLayer) cutRsc [QGVAR(rsc_hud), "PLAIN", 1];
 
     // Aktualisierung des HUD
-    GVAR(scriptHandle) = [] spawn FUNC(updateHUD);
+    [] spawn FUNC(updateHUD);
 
 } else {
 
     // delete rsc layer and all mission EH
     (QGVAR(layerID) call BIS_fnc_rscLayer) cutFadeOut 1;
-    terminate GVAR(scruptHandle);
 };
 
 

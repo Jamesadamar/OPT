@@ -26,24 +26,24 @@ if (!canSuspend) exitWith{};
 private _timeElapsed = serverTime - EGVAR(serverclock,startTime);
 
 if ((EGVAR(serverclock,playTime) - _timeElapsed) <= 0) then {
-    diag_log format ["########## Schlacht automatisch beendet. Endpunktestand: NATO %1 | CSAT %2 ##########", GVARMAIN(nato_points), GVARMAIN(csat_points)];
+    diag_log format ["########## Schlacht automatisch beendet. Endpunktestand: NATO %1 | CSAT %2 ##########", GVARMAIN(westPoints), GVARMAIN(eastPoints)];
 } else {
-    diag_log format ["########## Schlacht von MT beendet. Endpunktestand: NATO %1 | CSAT %2 ##########", GVARMAIN(nato_points), GVARMAIN(csat_points)];
+    diag_log format ["########## Schlacht von MT beendet. Endpunktestand: NATO %1 | CSAT %2 ##########", GVARMAIN(westPoints), GVARMAIN(eastPoints)];
 };
 
 // calculate winner
-if (GVARMAIN(csat_points) != GVARMAIN(nato_points)) then {
-    if (GVARMAIN(csat_points) > GVARMAIN(nato_points)) then {
-        GVARMAIN(csat_win) = 1;
+if (GVARMAIN(eastPoints) != GVARMAIN(westPoints)) then {
+    if (GVARMAIN(eastPoints) > GVARMAIN(westPoints)) then {
+        GVARMAIN(eastHasWon) = 1;
     } else {
-        GVARMAIN(nato_win) = 1;
+        GVARMAIN(westHasWon) = 1;
     };
 };
 
 private _camPos = vehicle player;
 private _text = switch (true) do {
-    case (GVARMAIN(csat_win) == 1) : {"CSAT hat gewonnen!"};
-    case (GVARMAIN(nato_win) == 1) : {"NATO hat gewonnen!"};
+    case (GVARMAIN(eastHasWon) == 1) : {"CSAT hat gewonnen!"};
+    case (GVARMAIN(westHasWon) == 1) : {"NATO hat gewonnen!"};
     default {"Unentschieden!"};
 };
 
@@ -67,10 +67,10 @@ sleep 3;
 
 // calculate personal endscreen and shutdown the running mission
 private _end = switch (true) do {
-    case (side player == west && {GVARMAIN(nato_win) == 1}) : {["END1",true,true]};
-    case (side player == west && {GVARMAIN(csat_win) == 1}) : {["END2",false,true]};
-    case (side player == east && {GVARMAIN(nato_win) == 1}) : {["END1",false,true]};
-    case (side player == east && {GVARMAIN(csat_win) == 1}) : {["END2",true,true]};
+    case (side player == west && {GVARMAIN(westHasWon) == 1}) : {["END1",true,true]};
+    case (side player == west && {GVARMAIN(eastHasWon) == 1}) : {["END2",false,true]};
+    case (side player == east && {GVARMAIN(westHasWon) == 1}) : {["END1",false,true]};
+    case (side player == east && {GVARMAIN(eastHasWon) == 1}) : {["END2",true,true]};
     default {["END3",true,true]};
 };
 _end spawn BIS_fnc_endMission;

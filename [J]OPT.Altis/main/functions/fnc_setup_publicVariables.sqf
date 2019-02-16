@@ -3,21 +3,21 @@
 // define all public variables here
 #include "script_component.hpp"
 
-GVARMAIN(csat_points) = 0;
-publicVariable QGVARMAIN(csat_points);
-GVARMAIN(nato_points) = 0;
-publicVariable QGVARMAIN(nato_points);
+GVARMAIN(eastPoints) = 0;
+publicVariable QGVARMAIN(eastPoints);
+GVARMAIN(westPoints) = 0;
+publicVariable QGVARMAIN(westPoints);
 GVARMAIN(draw) = 0;
 publicVariable QGVARMAIN(draw);
-GVARMAIN(csat_win)= 0;
-publicVariable QGVARMAIN(csat_win);
-GVARMAIN(nato_win) = 0;
-publicVariable QGVARMAIN(nato_win);
+GVARMAIN(eastHasWon)= 0;
+publicVariable QGVARMAIN(eastHasWon);
+GVARMAIN(westHasWon) = 0;
+publicVariable QGVARMAIN(westHasWon) ;
 GVARMAIN(dominator) = sideUnknown;
 publicVariable QGVARMAIN(dominator);
 
-GVARMAIN(nato_flags) = [];
-GVARMAIN(csat_flags) = [];
+GVARMAIN(westFlags) = [];
+GVARMAIN(eastFlags) = [];
 
-publicVariable QGVARMAIN(nato_flags);
-publicVariable QGVARMAIN(csat_flags);
+publicVariable QGVARMAIN(westFlags);
+publicVariable QGVARMAIN(eastFlags);

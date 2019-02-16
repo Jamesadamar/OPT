@@ -30,7 +30,7 @@ while {dialog && alive player} do {
     if (!isNil "FAR_bleedoutMessage" && !isNil "FAR_bleedoutTimer") then {
 
         // update button text
-        private _cost = [] call EFUNC(mission,respawnCost);
+        private _cost = [] call EFUNC(common,respawnCost);
         RESPAWN_BTN ctrlSetText FAR_REVIVE_RESPAWN_BUTTON(_cost);
 
         if (_labelwidth == -1) then {

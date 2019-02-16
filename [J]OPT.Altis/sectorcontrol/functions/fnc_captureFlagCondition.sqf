@@ -35,7 +35,7 @@ if (_flag isEqualTo objNull or _unit isEqualTo objNull) exitWith{false};
 // ausserhalb eines Fahrzeugs 
 // in Restspielzeit gezogen werden 
 // nur von der anderen Seite
-_flag in (GVARMAIN(nato_flags) + GVARMAIN(csat_flags)) and
+_flag in (GVARMAIN(westFlags) + GVARMAIN(eastFlags)) and
 _flag distance2D player < GVAR(flagDistanceToPlayer) and
 vehicle _unit == _unit and
 EGVAR(serverclock,missionStarted) and

@@ -34,16 +34,16 @@ _healer selectWeapon primaryWeapon _healer;
 sleep 1;
 _healer playAction "medicStart"; // endless loop until we call "medicStop"
 
-private _offset = [0,0,0]; 
+private _offset = [0,0,0];
 private _dir = 0;
 private _relpos = _healer worldToModel position _patient;
 
 if((_relpos select 0) < 0) then{
-    _offset=[-0.2,0.7,0]; 
+    _offset=[-0.2,0.7,0];
     _dir=90;
 
 } else {
-    _offset=[0.2,0.7,0]; 
+    _offset=[0.2,0.7,0];
     _dir=270;
 
 };
@@ -54,17 +54,8 @@ sleep 0.02;
 _patient attachTo [_healer,_offset];
 _patient setDir _dir;
 
-private _skill_factor = if ([_healer] call FUNC(isMedic)) then {
-    40+(random 10);
-} else {
-    70+(random 10);
-};
-
-private _damage = (damage _patient * _skill_factor);
-if (_damage < 25) then {_damage = 25};
 sleep 1;
-
-/*        
+/*
     * Arguments:
     * 0: Total Time (in game "time" seconds) <NUMBER>
     * 1: Arguments, passed to condition, fail and finish <ARRAY>
@@ -76,7 +67,7 @@ sleep 1;
 */
 
 [
-    _damage,
+    FAR_REVIVE_REVIVE_TIME,
     [_healer, _patient],
     {
         (_this select 0) params ["_healer", "_patient"];
@@ -88,7 +79,7 @@ sleep 1;
 
         // reset first aid multiplicator
         _patient setVariable ["FAR_firstAidMultiplicator", 0, true];
-                
+
         _patient setVariable ["FAR_isUnconscious", 0, true];
         _patient setVariable ["FAR_isDragged", 0, true];
 
@@ -96,8 +87,8 @@ sleep 1;
         private _name2 = UNIT_NAME(_healer);
 
         private _message = format [
-            "%1 (%2) wurde von %3 (%4) wiederbelebt.", 
-            _name1, 
+            "%1 (%2) wurde von %3 (%4) wiederbelebt.",
+            _name1,
             UNIT_SIDE(_patient),
             _name2,
             UNIT_SIDE(_healer)
@@ -105,7 +96,7 @@ sleep 1;
 
         // übergib Kategorie und Nachricht an log-FUnktion
         ["Revive", _message] remoteExecCall [QEFUNC(log,write), 2, false];
-        
+
     },
     {
         (_this select 0) params ["_healer", "_patient"];
@@ -122,14 +113,14 @@ sleep 1;
         };
 
     },
-    format[FAR_REVIVE_ACTION_REVIVE_BAR_TEXT, _damage],
+    format[FAR_REVIVE_ACTION_REVIVE_BAR_TEXT, FAR_REVIVE_REVIVE_TIME],
     {
         (_this select 0) params ["_healer", "_patient"];
 
-        // solange Zeit nicht abgelaufen, 
-        // beide am Leben, 
+        // solange Zeit nicht abgelaufen,
+        // beide am Leben,
         // Abstand zu Patient kleiner 2m,
-        // Heiler nicht bewusstlos und 
+        // Heiler nicht bewusstlos und
         // Animation nicht abgebrochen
         // -> aktualisiere Fortschrittsbalken
         alive _healer and
@@ -140,10 +131,10 @@ sleep 1;
     }
 ] call ace_common_fnc_progressBar;
 
-_patient setVariable ["FAR_healer", objNull, true]; 
+_patient setVariable ["FAR_healer", objNull, true];
 
 detach _healer;
-detach _patient;    
+detach _patient;
 
 _healer playAction "medicStop";
 

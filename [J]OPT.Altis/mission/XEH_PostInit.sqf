@@ -1,10 +1,15 @@
 #include "script_component.hpp"
 
-[] call FUNC(initCBAEvents);
 [] call FUNC(briefing); // fügt Briefing und Tagebuch hinzu
 
 if (isServer) then {
     [] call FUNC(initServerMissionEH);
+
+    GVARMAIN(westBudget) = parseNumber GVARMAIN(westBudgetStart);
+    publicVariable QGVARMAIN(westBudget);
+
+    GVARMAIN(eastBudget) = parseNumber GVARMAIN(eastBudgetStart);
+    publicVariable QGVARMAIN(eastBudget);
 
     //Function that adds dynamic groups to the mission as seen in End Game
     ["Initialize"] call BIS_fnc_dynamicGroups;
@@ -15,7 +20,6 @@ GVAR(EH_PreloadFinished) = addMissionEventHandler ["PreloadFinished",  {
     /*  	
         Executes assigned code after the mission preload screen. Stackable version of onPreloadFinished. 
     */
-
-    [] call FUNC(initPlayerEH);
+    
     [] call FUNC(postInit); // führt alle wichtigen Skripte aus
 }];

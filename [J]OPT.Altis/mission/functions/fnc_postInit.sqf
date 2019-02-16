@@ -48,7 +48,7 @@ if (isMultiplayer && hasInterface) then {	// only on dedicated environment
 // TEAM BALANCE - end mission for player if side is full
 // nicht in onPlayerRespawn, da nur zu Missionsbeginn prüfen
 if (isMultiplayer && hasInterface) then {
-	if (OPT_PARAM_TEAMBALANCE > 0) then {
+	if (GVARMAIN(teamBalance) > 0) then {
 		_en_pa = if (playerSide == blufor) then {playersNumber opfor} else {playersNumber blufor};
 		if ((playersNumber playerSide) > (_en_pa + OPT_PARAM_TEAMBALANCE)) then {
 			endMission (switch (playerSide) do {

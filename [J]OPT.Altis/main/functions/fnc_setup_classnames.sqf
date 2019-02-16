@@ -183,13 +183,21 @@ GVARMAIN(recon) =
     "OPT_NATO_Soldat"
 ];
 
-#ifdef __ONLY_PIO_CAN_BUILD_FARPS__
-    GVARMAIN(engineers) =
-    [
-        "OPT_NATO_Pionier_T",
-        "OPT_CSAT_Pionier_T"
-    ];
-#endif
+/* CAN USE GUNNER SLOT */
+GVARMAIN(gunner) =
+[
+
+] + GVARMAIN(pilots) + GVARMAIN(crew);
+
+/* Ingenieur */
+GVARMAIN(engineers) =
+[
+    "OPT_NATO_Pionier_T",
+    "OPT_CSAT_Pionier_T",
+	"OPT_NATO_Pionier",
+    "OPT_CSAT_Pionier"
+];
+
 
 /*
 * ALL VEHICLES
@@ -283,7 +291,11 @@ GVARMAIN(crew_vecs) =
     "OPT_O_T_APC_Tracked_02_cannon_ghex_light_F",    // BTR-K Kamysh 120000
     "OPT4_O_T_APC_Tracked_02_cannon_ghex_F",        // BTR-K Kamysh (Titan) 275000
     "OPT4_O_T_MBT_02_cannon_ghex_F",                    // T-100 Varsuk 450000
-    "OPT4_O_T_MBT_02_arty_ghex_F"                // 2S9 Sochor 400000
+    "OPT4_O_T_MBT_02_arty_ghex_F",                // 2S9 Sochor 400000
+	"OPT4_B_MRAP_01_gmg_F",
+	"OPT4_B_LSV_01_AT_F",
+	"OPT4_O_MRAP_02_gmg_F",
+	"OPT4_O_LSV_02_AT_F"	
 ];
 
 /* UAV */

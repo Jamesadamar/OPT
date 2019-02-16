@@ -10,8 +10,14 @@ class Extended_PreStart_EventHandlers {
 */
 
 class Extended_PreInit_EventHandlers {
+    class GVARMAIN(autoparachute) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'autoparachute\XEH_PreInit.sqf');
+    };
     class GVARMAIN(beam) {
         init = QUOTE(call compile preProcessFileLineNumbers 'beam\XEH_PreInit.sqf');
+    };
+    class GVARMAIN(berggang) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'berggang\XEH_PreInit.sqf');
     };
     class GVARMAIN(cargo) {
         init = QUOTE(call compile preProcessFileLineNumbers 'cargo\XEH_PreInit.sqf');
@@ -28,8 +34,11 @@ class Extended_PreInit_EventHandlers {
     class GVARMAIN(fieldrepair) {
         init = QUOTE(call compile preProcessFileLineNumbers 'fieldrepair\XEH_PreInit.sqf');
     };
-     class GVARMAIN(flip) {
+    class GVARMAIN(flip) {
         init = QUOTE(call compile preProcessFileLineNumbers 'flip\XEH_PreInit.sqf');
+    };
+    class GVARMAIN(freeze) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'freeze\XEH_PreInit.sqf');
     };
     class GVARMAIN(gps) {
         init = QUOTE(call compile preProcessFileLineNumbers 'gps\XEH_PreInit.sqf');
@@ -39,6 +48,9 @@ class Extended_PreInit_EventHandlers {
     };
     class GVARMAIN(hud) {
         init = QUOTE(call compile preProcessFileLineNumbers 'hud\XEH_PreInit.sqf');
+    };
+    class GVARMAIN(intro) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'intro\XEH_PreInit.sqf');
     };
     class GVARMAIN(log) {
         init = QUOTE(call compile preProcessFileLineNumbers 'log\XEH_PreInit.sqf');
@@ -64,6 +76,9 @@ class Extended_PreInit_EventHandlers {
     class GVARMAIN(revive) {
         init = QUOTE(call compile preProcessFileLineNumbers 'revive\XEH_PreInit.sqf');
     };
+    class GVARMAIN(classlock) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'classlock\XEH_PreInit.sqf');
+    };
     class GVARMAIN(sectorcontrol) {
         init = QUOTE(call compile preProcessFileLineNumbers 'sectorcontrol\XEH_PreInit.sqf');
     };
@@ -79,6 +94,9 @@ class Extended_PreInit_EventHandlers {
     class GVARMAIN(uav) {
         init = QUOTE(call compile preProcessFileLineNumbers 'uav\XEH_PreInit.sqf');
     };
+	class GVARMAIN(Waffenruhemarker) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'Waffenruhemarker\XEH_PreInit.sqf');
+    };
     class GVARMAIN(warehouse) {
         init = QUOTE(call compile preProcessFileLineNumbers 'warehouse\XEH_PreInit.sqf');
     };
@@ -89,8 +107,14 @@ class Extended_PreInit_EventHandlers {
 };
 
 class Extended_PostInit_EventHandlers {
+    class GVARMAIN(autoparachute) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'autoparachute\XEH_PostInit.sqf');
+    };
     class GVARMAIN(beam) {
         init = QUOTE(call compile preProcessFileLineNumbers 'beam\XEH_PostInit.sqf');
+    };
+    class GVARMAIN(berggang) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'berggang\XEH_PostInit.sqf');
     };
     class GVARMAIN(cargo) {
         init = QUOTE(call compile preProcessFileLineNumbers 'cargo\XEH_PostInit.sqf');
@@ -110,11 +134,17 @@ class Extended_PostInit_EventHandlers {
     class GVARMAIN(flip) {
         init = QUOTE(call compile preProcessFileLineNumbers 'flip\XEH_PostInit.sqf');
     };
+    class GVARMAIN(freeze) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'freeze\XEH_PostInit.sqf');
+    };
     class GVARMAIN(gps) {
         init = QUOTE(call compile preProcessFileLineNumbers 'gps\XEH_PostInit.sqf');
     };
     class GVARMAIN(hud) {
         init = QUOTE(call compile preProcessFileLineNumbers 'hud\XEH_PostInit.sqf');
+    };
+    class GVARMAIN(intro) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'intro\XEH_PostInit.sqf');
     };
     class GVARMAIN(log) {
         init = QUOTE(call compile preProcessFileLineNumbers 'log\XEH_PostInit.sqf');
@@ -137,6 +167,9 @@ class Extended_PostInit_EventHandlers {
     class GVARMAIN(revive) {
         init = QUOTE(call compile preProcessFileLineNumbers 'revive\XEH_PostInit.sqf');
     };
+    class GVARMAIN(classlock) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'classlock\XEH_PostInit.sqf');
+    };
     class GVARMAIN(sectorcontrol) {
         init = QUOTE(call compile preProcessFileLineNumbers 'sectorcontrol\XEH_PostInit.sqf');
     };
@@ -152,6 +185,9 @@ class Extended_PostInit_EventHandlers {
     class GVARMAIN(uav) {
         init = QUOTE(call compile preProcessFileLineNumbers 'uav\XEH_PostInit.sqf');
     };
+	class GVARMAIN(Waffenruhemarker) {
+        init = QUOTE(call compile preProcessFileLineNumbers 'Waffenruhemarker\XEH_PostInit.sqf');
+	};	
     class GVARMAIN(warehouse) {
         init = QUOTE(call compile preProcessFileLineNumbers 'warehouse\XEH_PostInit.sqf');
     };

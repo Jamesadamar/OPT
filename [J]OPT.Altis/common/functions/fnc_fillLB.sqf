@@ -33,9 +33,9 @@
 #include "script_component.hpp"
 
 /* PARAMS */
-params 
+params
 [
-    ["_idd", 0, [1], 1], 
+    ["_idd", 0, [1], 1],
     ["_idc", 0, [1], 1],
     ["_txtToAdd", [], [["s"]]],
     ["_picToAdd", [], [["s"]]],
@@ -51,21 +51,18 @@ if ((count _picToAdd != count _txtToAdd) or (count _dataToAdd != count _txtToAdd
 private _display = findDisplay _idd;
 private _lb = _display displayCtrl _idc;
 
-for "_i" from 0 to (count _txtToAdd - 1) do 
+for "_i" from 0 to (count _txtToAdd - 1) do
 {
     _lb lbAdd (_txtToAdd select _i);
-    LOG_2("%1: %2",_i,(_txtToAdd select _i));
 
-    if (count _dataToAdd > 0) then 
+    if (count _dataToAdd > 0) then
     {
         _lb lbSetData [_i, (_dataToAdd select _i)];
-        LOG_2("%1: %2",_i,(_dataToAdd select _i));
     };
 
     if (count _picToAdd > 0) then
     {
         _lb lbSetPicture [_i, (_picToAdd select _i)];
-        LOG_2("%1: %2",_i,(_picToAdd select _i));
     };
 
 };

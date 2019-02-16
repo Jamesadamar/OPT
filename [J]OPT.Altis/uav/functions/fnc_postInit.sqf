@@ -19,8 +19,6 @@
 // only pilots and operators have access to drone terminal
 if !(typeOf player in (GVARMAIN(pilots) + GVARMAIN(operator))) exitWith {};
 
-LOG_1("OPT_UAV_fnc_postInit startet für %1", PLAYER_NAME);
-
 _pcs = entities OPT_UAV_TERMINAL_OBJECT;
 
 // add to each UAV PC addaction menu
@@ -34,10 +32,10 @@ _pcs = entities OPT_UAV_TERMINAL_OBJECT;
                 _terminal,
                 {
                     params ["_terminal"];
-                    
+
                     ["UAV-Station","In UAV-Station eingeloggt.<br/>Verbindung geht verloren, wenn mehr als 4m entfernt.","green"] call EFUNC(gui,message);
                     player setVariable [QGVAR(loggedInStation), _terminal];
-                    
+
                     if ((typeOf player) in GVARMAIN(pilots) and PLAYER_SIDE == west) then {
                         player removeWeapon "ItemGPS";
                         player addWeapon "B_UavTerminal";
@@ -67,11 +65,11 @@ _pcs = entities OPT_UAV_TERMINAL_OBJECT;
                 3,
                 [],
                 {
-                    
+
                     ["UAV-Station","Von UAV-Station ausgeloggt.","green"] call EFUNC(gui,message);
                     player connectTerminalToUAV objNull;
                     player setVariable [QGVAR(loggedInStation), objNull];
-                    
+
                     if ((typeOf player) in  GVARMAIN(pilots) and PLAYER_SIDE == west) then {
                         player removeWeapon "B_UavTerminal";
                         player addWeapon "ItemGPS";
@@ -129,7 +127,7 @@ _pcs = entities OPT_UAV_TERMINAL_OBJECT;
         player setVariable [QGVAR(loggedInStation), objNull];
         player connectTerminalToUAV objNull;
         ["UAV-Station","Verbindung zur UAV-Station verloren.","red"] call EFUNC(gui,message);
-        
+
         if ((typeOf player) in GVARMAIN(pilots) and PLAYER_SIDE == west) then {
             player removeWeapon "B_UavTerminal";
             player addWeapon "ItemGPS";
@@ -143,7 +141,5 @@ _pcs = entities OPT_UAV_TERMINAL_OBJECT;
         };
 
     };
-  
-}] call BIS_fnc_addStackedEventHandler;
 
-LOG("OPT_UAV_fnc_postInit beendet");
+}] call BIS_fnc_addStackedEventHandler;

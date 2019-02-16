@@ -1,9 +1,9 @@
 /**
 * Description:
 * start global mission glock
-* manage freeze time, truce time and mission time
-* 
-* Author: 
+* manage truce time and mission time
+*
+* Author:
 * James
 *
 * Arguments:
@@ -29,7 +29,7 @@
 * log mission start state
 * log rest of mission time
 * log mission end state
-* 
+*
 * Example:
 * [] spawn EFUNC(serverclock,startClock);
 */
@@ -47,23 +47,6 @@ waitUntil { time > 1};
 GVAR(startTime) = serverTime;
 publicVariable QGVAR(startTime);
 
-// time since mission start: serverTime - GVAR(startTime)
-private _timeElapsed = TIME_ELAPSED;
-
-// freezeTime
-// if there is no freezeTime than jump directly to truceTime
-if (GVAR(freezeTime) > 0) then {
-
-    private _timeUntilFreezeEnds = GVAR(freezeTime) * 60 - _timeElapsed;
-    
-    _log_msg = format["Beginn Ruhephase: %1 min", _timeUntilFreezeEnds / 60];
-    ["Mission", _log_msg] call EFUNC(log,write);
-
-    for "_t" from ceil(_timeUntilFreezeEnds) to 0 step -1 do {
-        uisleep 1;
-    }; 
-};
-
 // truceTime
 // broadcast start of truceTime to all clients
 GVAR(truceStarted) = true;
@@ -73,12 +56,13 @@ publicVariable QGVAR(truceStarted);
 
 estimatedTimeLeft (GVAR(playTime) * 60 - TIME_ELAPSED);
 _timeElapsed = TIME_ELAPSED;
-private _timeUntilTruceEnds = (GVAR(truceTime) + GVAR(freezeTime)) * 60 - _timeElapsed;
+private _timeUntilTruceEnds = GVAR(truceTime) * 60 - _timeElapsed;
 
 _log_msg = format["Beginn Waffenruhe: %1 min", _timeUntilTruceEnds / 60];
 ["Mission", _log_msg] call EFUNC(log,write);
 
-for "_t" from ceil(_timeUntilTruceEnds) to 0 step -1 do {
+for "_t" from ceil(_timeUntilTruceEnds) to 0 step -1 do
+{
     uisleep 1;
 };
 
@@ -91,27 +75,31 @@ publicVariable QGVAR(missionStarted);
 
 estimatedTimeLeft (GVAR(playTime) * 60 - TIME_ELAPSED);
 _timeElapsed = TIME_ELAPSED;
-_log_msg = format["Beginn Rest-Spielzeit: %1 min", ((GVAR(playTime) + GVAR(freezeTime)) * 60 - _timeElapsed) / 60];
+_log_msg = format["Beginn Rest-Spielzeit: %1 min", (GVAR(playTime) * 60 - _timeElapsed) / 60];
 ["Mission", _log_msg] call EFUNC(log,write);
 
 // begin with countdown of mission time
-while {MISSION_IS_RUNNING} do {
+while {MISSION_IS_RUNNING} do
+{
 
 	// call all functions that were registered for running each minute
-	{
+	GVAR(registeredCallbacks) apply {
 		call compile format["[] call %1", _x];
-	} forEach GVAR(registeredCallbacks);
+	};
 
 	uiSleep 60;
     estimatedTimeLeft (GVAR(playTime) * 60 - TIME_ELAPSED);
 };
 
 // wait last seconds exactly until mission ends
-waitUntil { _timeElapsed = TIME_ELAPSED; (GVAR(playTime) + GVAR(freezeTime)) * 60 - _timeElapsed < 0; };
+waitUntil
+{
+    _timeElapsed = TIME_ELAPSED;
+    GVAR(playTime) * 60 - _timeElapsed < 0;
+};
 
 [] call EFUNC(log,writeEndState);
 
 [] remoteExec [QEFUNC(mission,endMission), -2, true]; // call end script on all clients
 
-//"SideScore" call BIS_fnc_endMissionServer;
 

@@ -1,41 +1,54 @@
 /**
-* Author: James
-* determine repair time in dependence of damage
+* Description:
+* calculate repair time in dependence of vehicle damage
+*
+* Author:
+* James
 *
 * Arguments:
 * 0: <OBJECT> vehicle
 *
 * Return Value:
-* 0: <NUMBER> repair time in seconds
+* <NUMBER> repair time in seconds
+*
+* Server only:
+* no
+*
+* Public:
+* yes
+*
+* Global:
+* no
+*
+* Sideeffects:
+* no
 *
 * Example:
-* [vehicle] call fnc_getPartsRepairTime.sqf;
-*
+* [vehicle player] call EFUNC(fieldrepair,getPartsRepairTime);
 */
 #include "script_component.hpp"
 
+/* PARAMS */
 params [["_veh", objNull]];
 
-if (_veh isEqualTo objNull) exitWith {false};
-
+/* VALIDATION */
 private _rprTime = 0;
-GVAR(repair_hps) apply
+if (_veh isEqualTo objNull) exitWith {_rprTime};
+
+/* CODE BODY */
+(getAllHitPointsDamage _veh select 0) apply
 {
     private _cdmg = _veh getHitPointDamage (_x);
 
-    if (not isNil {_cdmg} ) then
+    if (_cdmg > FIELDREPAIR_MIN_DAMAGE_FOR_EASY_PARTS) then
     {
-        if (_cdmg > 0.64) exitWith
+        if ([_x] call FUNC(isHardPart)) then
         {
-            if (_x in GVAR(hardRepairParts)) then
-            {
-                _rprTime = _rprTime + DEFAULT_FIELDREPAIR_EACH_HARDPART_TIME;
+            _rprTime = _rprTime + GVAR(repairTimeHardPart);
 
-            } else
-            {
-                _rprTime = _rprTime + DEFAULT_FIELDREPAIR_EACH_PART_TIME;
-
-            };
+        } else
+        {
+            _rprTime = _rprTime + GVAR(repairTimeEasyPart);
 
         };
 

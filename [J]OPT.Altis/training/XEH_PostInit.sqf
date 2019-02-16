@@ -7,14 +7,15 @@
 
 if (!GVAR(on)) exitWith{};
 
-// set budget to 10 million
-GVARMAIN(nato_budget) = parseNumber GVAR(budget);
-GVARMAIN(csat_budget) = parseNumber GVAR(budget);
-
-
 if (isServer) then 
 {
     [] call FUNC(initServerMissionEH);
+    
+    // set budget to 10 million
+    GVARMAIN(westBudget) = parseNumber GVAR(budget);
+    GVARMAIN(eastBudget) = parseNumber GVAR(budget);
+    publicVariable QGVARMAIN(westBudget);
+    publicVariable QGVARMAIN(eastBudget);
 };
 
 // executed after briefing right to mission start

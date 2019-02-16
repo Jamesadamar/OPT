@@ -9,7 +9,3 @@ if (isServer) then {
     estimatedTimeLeft (GVAR(playTime) * 60 - TIME_ELAPSED);
     [] spawn FUNC(startClock);
 };
-
-if (hasInterface) then {
-    [] spawn FUNC(freeze);
-}

@@ -21,86 +21,86 @@
 
 private _side = PLAYER_SIDE;
 
-params 
+params
 [
     ["_type", "", ["s"], 1]
 ];
 GVAR(vehicleType) = _type;
 
-private _pool = switch (GVAR(vehicleType)) do 
+private _pool = switch (GVAR(vehicleType)) do
 {
-    case "vehicles" : 
+    case "vehicles" :
     {
-        if (_side == west) then 
+        if (_side == west) then
         {
             GVAR(nato_vehicles) + GVAR(nato_vehicles_supply)
-        } 
-        else 
+        }
+        else
         {
             GVAR(csat_vehicles) + GVAR(csat_vehicles_supply)
         };
 
     };
-    case "choppers" : 
+    case "choppers" :
     {
-        if (_side == west) then 
+        if (_side == west) then
         {
             GVAR(nato_choppers)
         }
-        else 
+        else
         {
             GVAR(csat_choppers)
         };
-        
+
     };
-    case "armored" : 
+    case "armored" :
     {
-        if (_side == west) then 
+        if (_side == west) then
         {
             GVAR(nato_armored)
-        } 
-        else 
+        }
+        else
         {
             GVAR(csat_armored)
         };
-        
+
     };
-    case "supplies" : 
+    case "supplies" :
     {
-        if (_side == west) then 
+        if (_side == west) then
         {
             GVAR(nato_supplies) + GVAR(nato_static)
         }
-        else 
+        else
         {
             GVAR(csat_supplies) + GVAR(csat_static)
         };
-        
+
     };
-    case "sea" : 
+    case "sea" :
     {
-        if (_side == west) then 
+        if (_side == west) then
         {
             GVAR(nato_sea)
-        } 
-        else 
+        }
+        else
         {
             GVAR(csat_sea)
         };
-        
+
     };
     default {[]};
 };
 
 // show only objects with a price greater than 0 € and valid cofig class
-_pool = _pool select 
+_pool = _pool select
 {
-    _x select 1 > 0 and 
+    _x select 1 > 0 and
     isClass (configFile >> "CfgVehicles" >> (_x select 0))
 };
-LOG_1("%1",_pool);
+
 GVAR(orderDialogObjects) = [_pool, 1] call CBA_fnc_sortNestedArray; // billigste zuerst
-LOG_1("%1",GVAR(orderDialogObjects));
+
 // player sideChat format ["%1", GVAR(orderDialogObjects)];
 createDialog QGVAR(dlg_order);
 disableSerialization;
@@ -113,27 +113,27 @@ private _close = _display displayCtrl 20003;
 private _sell = _display displayCtrl 20004;
 private _rscPicture = _display displayCtrl IDC_PLAYER_FLAG;
 
-if !(GVAR(allowSale)) then 
+if !(GVAR(allowSale)) then
 {
     _sell ctrlEnable false;
 };
 
 [_budget] call EFUNC(common,renderBudget);
 
-private _txtToAdd = GVAR(orderDialogObjects) apply 
+private _txtToAdd = GVAR(orderDialogObjects) apply
 {
     [configFile >> "CfgVehicles" >> (_x select 0) >> "displayName", ""] call BIS_fnc_returnConfigEntry;
 };
-LOG_1("%1",_txtToAdd);
-private _picToAdd = GVAR(orderDialogObjects) apply 
+
+private _picToAdd = GVAR(orderDialogObjects) apply
 {
 
-    private _val = [configFile >> "cfgVehicles" >> (_x select 0) >> "picture", ""] call BIS_fnc_returnConfigEntry; 
-    if (_val find ".paa" != -1) then 
+    private _val = [configFile >> "cfgVehicles" >> (_x select 0) >> "picture", ""] call BIS_fnc_returnConfigEntry;
+    if (_val find ".paa" != -1) then
     {
         _val;
-    } 
-    else 
+    }
+    else
     {
         [configFile >> "cfgVehicles" >> (_x select 0) >> "editorPreview", ""] call BIS_fnc_returnConfigEntry;
     };
@@ -142,26 +142,26 @@ private _dataToAdd = GVAR(orderDialogObjects) apply {_x select 0};
 
 [IDD_DLG_ORDER, IDC_CTRL_VEHICLE_LIST, _txtToAdd, _picToAdd, _dataToAdd] call EFUNC(common,fillLB);
 
-// set flag paa 
-switch (_side) do 
+// set flag paa
+switch (_side) do
 {
-    case west: 
+    case west:
     {
         _rscPicture ctrlSetText "\A3\Data_F\Flags\Flag_NATO_CO.paa";
     };
-    case east: 
+    case east:
     {
         _rscPicture ctrlSetText "\A3\Data_F\Flags\Flag_CSAT_CO.paa";
-    };   
+    };
 };
 
 // deaktiviere Verkaufenbutton für alle Dialoge außer "sell"
-if (count GVAR(orderDialogObjects) != 0) then 
+if (count GVAR(orderDialogObjects) != 0) then
 {
     _sell ctrlShow false;
 
-} 
-else 
+}
+else
 {
     _order ctrlEnable false;
 
@@ -172,19 +172,19 @@ else
 
     // gehe alle gefundenen Objekte durch und lösche sie, falls nicht in pool, oder ergänze um Verkaufspreis
     {
-        
+
     _index = ((GVAR(all) apply {toLower (_x select 0)}) find (toLower (typeOf _x)));
 
-        if (_index == -1) then 
+        if (_index == -1) then
         {
-            _objs = _objs - [_x]; 
-        } 
-        else 
+            _objs = _objs - [_x];
+        }
+        else
         {
-            _pool pushBack 
+            _pool pushBack
             [
                 _x,
-                (GVAR(all) select _index) select 2, 
+                (GVAR(all) select _index) select 2,
                 (GVAR(all) select _index) select 3
             ]; // füge Fahrzeug und Verkaufspreis hinzu
         };
@@ -203,11 +203,11 @@ else
         _picture = "";
 
         private _val = [configFile >> "cfgVehicles" >> _class >> "picture", ""] call BIS_fnc_returnConfigEntry;
-        if (_val find ".paa" != -1) then 
+        if (_val find ".paa" != -1) then
         {
             _picture = _val;
-        } 
-        else 
+        }
+        else
         {
             _picture = [configFile >> "cfgVehicles" >> _class >> "editorPreview", ""] call BIS_fnc_returnConfigEntry;
         };

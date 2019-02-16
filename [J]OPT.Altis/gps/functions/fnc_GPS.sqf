@@ -39,7 +39,7 @@
 GVAR(mode) = 1;
 
 // GPS mode: all units are visible in mode 2
-if (typeOf player in GVARMAIN(officer) and GVAR(showAllUnits)) then
+if (typeOf player in GVARMAIN(officer)) then
 {
     GVAR(mode) = 2;
 };
@@ -157,7 +157,7 @@ while {true} do
                     {
                         if (_obj isEqualTo (leader _obj)) then
                         {
-                            _marker setMarkerTextLocal format["%1 (%2)", _name, {alive _x} count units _obj];
+                            _marker setMarkerTextLocal format["%1 (%2)", _name, groupID (group _obj)];
                             _marker setMarkerSizeLocal [0.9, 0.9];
 
                         } else

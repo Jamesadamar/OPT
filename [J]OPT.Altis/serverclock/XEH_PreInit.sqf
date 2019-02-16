@@ -13,7 +13,6 @@ ADDON = true;
 // define variable with default value!
 // GVAR(...)
 GVAR(startTime) = 0;
-GVAR(freezeStarted) = false;
 GVAR(truceStarted) = false;
 GVAR(missionStarted) = false;
 GVAR(registeredCallbacks) = [];

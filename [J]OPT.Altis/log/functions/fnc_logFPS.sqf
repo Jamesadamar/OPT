@@ -16,13 +16,15 @@
 */
 #include "script_component.hpp"
 
-// log fps only after truce
-waitUntil {EGVAR(serverclock,missionStarted)};
+// log fps only after mission start
+waitUntil {time > 1};
 
 // log fps each update intervall on server
+private _name = ["SERVER", PLAYER_NAME] select hasInterface;
+
 while {true} do {
-    
-    [PLAYER_NAME, diag_fps, diag_fpsMin] remoteExecCall [QFUNC(storeFPS), 2, false];
+
+    [_name, diag_fps, diag_fpsMin] remoteExecCall [QFUNC(storeFPS), 2, false];
 
     sleep GVAR(fpsUpdateTime);
 };

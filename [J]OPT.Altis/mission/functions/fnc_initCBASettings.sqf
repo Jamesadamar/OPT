@@ -15,7 +15,7 @@
 #include "script_component.hpp"
 
 [
-    "OPT_PARAM_TEAMBALANCE", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    QGVARMAIN(teamBalance), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "SLIDER", // setting type
     "Überhangregel", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "OPT Mission", // Pretty name of the category where the setting can be found. Can be stringtable entry.
@@ -25,18 +25,7 @@
 ] call CBA_Settings_fnc_init;
 
 [
-    "OPT_PARAM_SHOW_INTRO", // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
-    "CHECKBOX", // setting type
-    "Intro an/aus", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
-    "OPT Mission", // Pretty name of the category where the setting can be found. Can be stringtable entry.
-    true, // data for this setting: [min, max, default, number of shown trailing decimals]
-    1, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
-    {} // function that will be executed once on mission start and every time the setting is changed.
-] call CBA_Settings_fnc_init;
-
-
-[
-    QGVARMAIN(nato_budget), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    QGVARMAIN(westBudgetStart), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "EDITBOX", // setting type
     "Budget NATO", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "OPT Mission", // Pretty name of the category where the setting can be found. Can be stringtable entry.
@@ -44,12 +33,12 @@
     1, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
     {
         params ["_value"];
-        GVARMAIN(nato_budget) = parseNumber _value;
+        GVARMAIN(westBudgetStart) = parseNumber _value;
     } // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_Settings_fnc_init;
 
 [
-    QGVARMAIN(csat_budget), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    QGVARMAIN(eastBudgetStart), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "EDITBOX", // setting type
     "Budget CSAT", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "OPT Mission", // Pretty name of the category where the setting can be found. Can be stringtable entry.
@@ -57,7 +46,7 @@
     1, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
     {
         params ["_value"];
-        GVARMAIN(csat_budget) = parseNumber _value;
+        GVARMAIN(eastBudgetStart) = parseNumber _value;
     } // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_Settings_fnc_init;
 
@@ -75,7 +64,7 @@
 ] call CBA_Settings_fnc_init;
 
 [
-    QGVARMAIN(respawn_cost_max), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    QGVARMAIN(respawnCostMax), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "EDITBOX", // setting type
     "Max Kosten für eine neue Einheit (Respawn)", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "OPT Mission", // Pretty name of the category where the setting can be found. Can be stringtable entry.
@@ -83,12 +72,12 @@
     1, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
     {
         params ["_value"];
-        GVARMAIN(respawn_cost_max) = parseNumber _value;
+        GVARMAIN(respawnCostMax) = parseNumber _value;
     }  // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_Settings_fnc_init;
 
 [
-    QGVARMAIN(respawn_cost_min), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    QGVARMAIN(respawnCostMin), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "EDITBOX", // setting type
     "Min Kosten für eine neue Einheit (Respawn)", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "OPT Mission", // Pretty name of the category where the setting can be found. Can be stringtable entry.
@@ -96,12 +85,12 @@
     1, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
     {
         params ["_value"];
-        GVARMAIN(respawn_cost_min) = parseNumber _value;
+        GVARMAIN(respawnCostMin) = parseNumber _value;
     }  // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_Settings_fnc_init;
 
 [
-    QGVARMAIN(repairSystem_repairCost), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    QGVARMAIN(repairCost), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "EDITBOX", // setting type
     "Kosten für einmalige Reparatur am Service-Pad", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "OPT Mission", // Pretty name of the category where the setting can be found. Can be stringtable entry.
@@ -109,12 +98,12 @@
     1, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
     {
         params ["_value"];
-        GVARMAIN(repairSystem_repairCost) = parseNumber _value;
+        GVARMAIN(repairCost) = parseNumber _value;
     }  // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_Settings_fnc_init;
 
 [
-    QGVARMAIN(repairSystem_refuelCost), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
+    QGVARMAIN(refuelCost), // Internal setting name, should always contain a tag! This will be the global variable which takes the value of the setting.
     "EDITBOX", // setting type
     "Kosten für einmaliges Auftanken am Service-Pad", // Pretty name shown inside the ingame settings menu. Can be stringtable entry.
     "OPT Mission", // Pretty name of the category where the setting can be found. Can be stringtable entry.
@@ -122,6 +111,6 @@
     1, // "_isGlobal" flag. Set this to true to always have this setting synchronized between all clients in multiplayer
     {
         params ["_value"];
-        GVARMAIN(repairSystem_refuelCost) = parseNumber _value;
+        GVARMAIN(refuelCost) = parseNumber _value;
     }  // function that will be executed once on mission start and every time the setting is changed.
 ] call CBA_Settings_fnc_init;

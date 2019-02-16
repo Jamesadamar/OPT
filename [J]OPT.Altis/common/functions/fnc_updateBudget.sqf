@@ -26,7 +26,7 @@
 * yes - changes budget of either west or east
 *
 * Sideeffects:
-* QGVARMAIN(nato_budget) or QGVARMAIN(csat_budget) is updated via publicVariable
+*QGVARMAIN(westBudget) or GVARMAIN(eastBudget) is updated
 * buy or sell process is logged 
 *
 * Example:
@@ -65,45 +65,49 @@ private _budget_neu = 0;
 private _unitName = (getText(configFile >> 'CfgVehicles' >> _unitType >> 'displayName'));
 if (_side == west) then 
 {
-    _budget_neu = call compile format["%1 %2 %3", GVARMAIN(nato_budget), _sign, _unitCost];
+    _budget_neu = call compile format["%1 %2 %3", GVARMAIN(westBudget), _sign, _unitCost];
     _message = format
     [
         "NATO alt: %1 - neu: %2 - Differenz: %3%4.", 
-        GVARMAIN(nato_budget), 
+        GVARMAIN(westBudget), 
         _budget_neu, 
         _sign,
         _unitCost
     ];
 
-    GVARMAIN(nato_budget) = _budget_neu;
-    publicVariable QGVARMAIN(nato_budget);
+    GVARMAIN(westBudget) = _budget_neu;
+    publicVariable QGVARMAIN(westBudget);
 
 }
 else 
 {
-    _budget_neu = call compile format["%1 %2 %3", GVARMAIN(csat_budget), _sign, _unitCost];
+    _budget_neu = call compile format["%1 %2 %3", GVARMAIN(eastBudget), _sign, _unitCost];
     _message = format
     [
         "CSAT alt: %1 - neu: %2 - Differenz: %3%4.", 
-        GVARMAIN(csat_budget), 
+        GVARMAIN(eastBudget), 
         _budget_neu, 
         _sign, 
         _unitCost    
     ];
     
-    GVARMAIN(csat_budget) = _budget_neu;
-    publicVariable QGVARMAIN(csat_budget);
+    GVARMAIN(eastBudget) = _budget_neu;
+    publicVariable QGVARMAIN(eastBudget);
 
 };
 
-switch (_case) do {
-    case "respawn": {
+switch (_case) do 
+{
+    case "respawn": 
+    {
         _message = format["%1 Respawn von %2", _message, _buyerName];
     };
-    case "weapons": {
+    case "weapons": 
+    {
         _message = format["%1 Fahrzeug %2 wurde auf/abgerüstet.", _message, _unitName];
     };
-    default {
+    default 
+    {
         _message = format["%1 %2 (ver)kaufte %3", _message, _buyerName, _unitName];
     };
 };

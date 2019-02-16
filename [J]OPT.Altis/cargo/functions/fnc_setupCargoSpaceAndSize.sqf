@@ -118,7 +118,7 @@ GVAR(canTransportCargo) =
     ["OPT_O_T_Quadbike_01_ghex_F", 2],                                  // Quadbike    - checken!
     ["OPT_O_T_LSV_02_unarmed_F", 4],                                    // Quilin unarmed
     ["OPT_O_T_LSV_02_armed_F", 4],                                      // Quilin armed
-    ["OPT4_O_LSV_01_AT_F", 4],                                          // Prowler AT - vanilla    - lord
+    ["OPT4_O_LSV_02_AT_F", 4],                                          // Prowler AT - vanilla    - lord
     ["OPT_O_G_Offroad_01_F", 4],                                        // Pickup  - grad nich drin!
     ["OPT_O_G_Offroad_01_armed_F", 4],                                  // Pickup HMG  - grad nich drin!
     ["OPT_O_T_MRAP_02_ghex_F", 4],                                      // Ifrit - tropentarn hinzugefügt
@@ -224,7 +224,7 @@ GVAR(canBeTransported) =
     ["OPT_O_static_AT_F", 2],                                           // Stand-AT,200000
     ["OPT_O_Mortar_01_F", 2],                                           // MK6 Mörser,200000
     ["B_Mortar_01_F", 2],                                               // MK6 - Mrser
-    ["OPT4_ACE_Box_82mm_Mo_HE", 4],                                     //Mörsermuni    
+    ["OPT4_ACE_Box_82mm_Mo_HE", 4],                                     // Mörsermuni    
     ["OPT_FlexibleTank_01_sand_F", 1],                                  // Treibstoff-Fass
     ["OPT_Land_Pod_Heli_Transport_04_fuel_F", 8],                       // Fuelcontainer
     ["OPT_Land_Pod_Heli_Transport_04_fuel_black_F", 8],                 // Fuelcontainer (schwarz)

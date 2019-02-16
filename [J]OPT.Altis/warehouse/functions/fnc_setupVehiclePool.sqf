@@ -34,19 +34,14 @@ GVAR(nato_vehicles) =
     ["OPT_B_Quadbike_01_F", DEF_PROD(1500)],                    // Quadbike
     ["OPT_B_T_LSV_01_unarmed_F", DEF_PROD(5000)],               // Prowler unarmed 
     ["OPT_B_T_LSV_01_armed_F", DEF_PROD(8000)],                 // Prowler armed
-    ["OPT4_B_LSV_01_AT_F", DEF_PROD(20000)],                    // Prowler AT - 20000
     ["OPT_B_G_Offroad_01_F", DEF_PROD(0)],                      // Pickup, 1000, ersetzt durch Prawler
     ["OPT_B_G_Offroad_01_armed_F", DEF_PROD(0)],                // Pickup HMG, 4000, ersetzt durch Prawler
     ["OPT_B_Truck_01_covered_F", DEF_PROD(8000)],               // HEMTT Transport
     ["OPT_B_Truck_01_Repair_F", DEF_PROD(10000)],               // HEMTT Repair, ersetzt durch Container
     ["OPT_B_Truck_01_medical_F", DEF_PROD(10000)],              // HEMTT Medical, ersetzt durch Container
     ["OPT_B_Truck_01_transport_F", DEF_PROD(2000)],             // HEMTT 2000 (fr Radar Container, keine Sitze auf 
-    ["OPT_B_MRAP_01_F", DEF_PROD(5000)],                        // Hunter
-    ["OPT4_B_MRAP_01_hmg_F", DEF_PROD(15000)],                  // Hunter HMG - neu
-    ["OPT4_B_MRAP_01_gmg_F", DEF_PROD(15000)],                  // Hunter GMG - neu
-    ["OPT_B_MRAP_03_F", DEF_PROD(0)],                           // Strider, 6500 
-    ["OPT_B_MRAP_03_hmg_F", DEF_PROD(0)],                       // Strider HMG, 
-    ["OPT4_B_MRAP_03_gmg_F", DEF_PROD(22000)]                   // Strider GMG,  
+		["OPT4_B_MRAP_01_hmg_F", DEF_PROD(20000)],                  // Hunter HMG - neu
+    ["OPT_B_MRAP_01_F", DEF_PROD(5000)]                        // Hunter
 ];
 
 // Fahrzeuge dieser Liste können nicht verkauft werden!
@@ -95,7 +90,12 @@ GVAR(nato_armored) =
     ["OPT_B_MBT_01_Arty_F", DEF_PROD(0)],                       // M4 Scorcher
     ["OPT4_B_MBT_01_mlrs_F", DEF_PROD(0)],                      // M5 Sandstorm    
     ["OPT4_B_MBT_01_arty_F", DEF_PROD(300000)],                 // M4 Scorcher
-    ["OPT_B_MBT_01_mlrs_F", DEF_PROD(400000)]                   // M5 Sandstorm    
+    ["OPT_B_MBT_01_mlrs_F", DEF_PROD(400000)],                   // M5 Sandstorm    
+    ["OPT4_B_MRAP_01_gmg_F", DEF_PROD(0)],                  // Hunter GMG - neu
+    ["OPT_B_MRAP_03_F", DEF_PROD(0)],                           // Strider, 6500 
+    ["OPT_B_MRAP_03_hmg_F", DEF_PROD(0)],                       // Strider HMG, 
+    ["OPT4_B_MRAP_03_gmg_F", DEF_PROD(0)],                   // Strider GMG, 22000 
+	["OPT4_B_LSV_01_AT_F", DEF_PROD(80000)]                    // Prowler AT - 20000
 ];
 
 GVAR(nato_supplies) = 
@@ -104,9 +104,9 @@ GVAR(nato_supplies) =
     ["OPT_Box_NATO_WpsSpecial_F", 60000, 10000, 20000],         // Munition spezial
     ["OPT_Box_NATO_Grenades_F", 75000, 10000, 20000],           // granatenkiste
     ["OPT_NATO_Sprengstoffkiste", 150000, 10000, 20000],        // sprengstoffkiste
-    ["OPT_Box_NATO_WpsSpecial_AT3_F", 30000, 10000, 20000],     // AT Raketenkiste (RPG-42)
-    ["OPT_Box_NATO_WpsSpecial_AA_F", 40000, 10000, 20000],      // AA Raketenkiste
-    ["OPT_B_supplyCrate_F", DEF_PROD(500)],                     // Transportkiste (leer)
+    ["OPT_Box_NATO_WpsSpecial_AT3_F", 130000, 10000, 20000],     // AT Raketenkiste (RPG-42)
+    ["OPT_Box_NATO_WpsSpecial_AA_F", 140000, 10000, 20000],      // AA Raketenkiste
+    ["OPT_B_supplyCrate_F", DEF_PROD(0)],                     // Transportkiste (leer)
     ["OPT_B_CargoNet_01_ammo_F", DEF_PROD(5000)],               // Ausrstungskiste
     ["OPT_Box_NATO_WpsSpecial_Diver_F", DEF_PROD(5000)],        // Taucherkiste    
     ["OPT_Box_NATO_WpsSpecial_F", DEF_PROD(0)],                 // PCML-M Raketenkiste
@@ -116,7 +116,7 @@ GVAR(nato_supplies) =
     ["OPT_B_UAV_01_F", DEF_PROD(0)],                            // Darter AR-2
     ["OPT_FlexibleTank_01_forest_F", DEF_PROD(1000)],           // Treibstoff-Fass
     ["OPT4_ACE_Box_82mm_Mo_HE", DEF_PROD(100000)],              // Mörsermuni
-    ["OPT_B_Slingload_01_Ammo_F", 90000, 10000, 20000],         // Munitionscontainer
+    ["OPT_B_Slingload_01_Ammo_F", 0, 0, 0],         // Munitionscontainer
     ["OPT_B_Slingload_01_Fuel_F", DEF_PROD(8000)],              // Fuelcontainer
     ["OPT_B_Slingload_01_Repair_F", DEF_PROD(8000)],            // Reparaturcontainer
     ["OPT_B_Slingload_01_Medevac_F", DEF_PROD(0)],              // Lazarettcontainer, 5000            //psycho, dieser container verursacht Probleme mit den Load-Scripts und wird durch den weien Container ersetzt welcher zum Lazarett ausgebaut werden kann
@@ -140,9 +140,9 @@ GVAR(nato_static) =
 [
     ["OPT_B_HMG_01_high_F", DEF_PROD(10000)],                   // Stand-MG hoch
     ["OPT_B_HMG_01_F", DEF_PROD(10000)],                        // Stand-MG niedrig
-    ["OPT_B_GMG_01_high_F", DEF_PROD(15000)],                   // Stand-GMG hoch
-    ["OPT_B_GMG_01_F", DEF_PROD(15000)],                        // Stand-GMG niedrig
-    ["OPT_B_static_AA_F", DEF_PROD(25000)],                     // Stand-AA
+    ["OPT_B_GMG_01_high_F", DEF_PROD(75000)],                   // Stand-GMG hoch
+    ["OPT_B_GMG_01_F", DEF_PROD(75000)],                        // Stand-GMG niedrig
+    ["OPT_B_static_AA_F", DEF_PROD(50000)],                     // Stand-AA
     ["OPT_B_static_AT_F", DEF_PROD(150000)],                    // Stand-AT
     ["OPT_B_Mortar_01_F", DEF_PROD(0)],                         // MK6 - Mörser
     ["B_Mortar_01_F", DEF_PROD(50000)],                         // MK6 - Mörser
@@ -163,7 +163,6 @@ GVAR(csat_vehicles) =
     ["OPT_O_Quadbike_01_F", DEF_PROD(1500)],                    // Quadbike-
     ["OPT_O_T_LSV_02_unarmed_F", DEF_PROD(4000)],               // Quilin unarmed-
     ["OPT_O_T_LSV_02_armed_F", DEF_PROD(8000)],                 // Quilin armed-
-    ["OPT4_O_LSV_02_AT_F", DEF_PROD(20000)],                    // Quilin AT++++++++++++++++++++++++++ 20000
     ["OPT_O_Truck_03_covered_F", DEF_PROD(8000)],               // Tempest Transport-
     ["OPT_O_Truck_03_repair_F", DEF_PROD(10000)],               // Tempest Repair, ersetzt durch container-
     ["OPT_O_Truck_03_medical_F", DEF_PROD(10000)],              // Tempest Medical, ersetzt durch container-
@@ -171,9 +170,8 @@ GVAR(csat_vehicles) =
     ["OPT_O_G_Offroad_01_F", DEF_PROD(0)],                      // Pickup, ersetzt durch quilin
     ["OPT_O_G_Offroad_01_armed_F", DEF_PROD(0)],                // Pickup HMG, ersetzt durch quilin
     ["OPT_O_MRAP_02_F", DEF_PROD(5500)],                        // Ifrit-
-    ["OPT4_O_MRAP_02_hmg_F", DEF_PROD(15500)],                  // Ifrit HMG
-    ["OPT4_O_MRAP_02_gmg_F", DEF_PROD(15500)],                  // Ifrit GMG
-//Tropentarn
+	["OPT4_O_MRAP_02_hmg_F", DEF_PROD(15500)],                  // Ifrit HMG
+    //Tropentarn
     ["OPT_O_T_Quadbike_01_ghex_F", DEF_PROD(0)],                // Quadbike 1500
     ["OPT_O_T_LSV_02_unarmed_F", DEF_PROD(0)],                  // Quilin unarmed 3000
     ["OPT_O_T_LSV_02_armed_F", DEF_PROD(0)],                    // Quilin armed 4000
@@ -251,6 +249,8 @@ GVAR(csat_armored) =
     ["OPT4_O_MBT_02_cannon_F", DEF_PROD(125000)],               // T-100 Varsuk
     ["OPT4_O_MBT_02_arty_F", DEF_PROD(300000)],                 // 2S9 Sochor
     ["OPT_O_Truck_02_MRL_F", DEF_PROD(400000)],                 // 2S9 Sochor    
+    ["OPT4_O_MRAP_02_gmg_F", DEF_PROD(0)],                  // Ifrit GMG
+	["OPT4_O_LSV_02_AT_F", DEF_PROD(80000)],                    // Quilin AT++++++++++++++++++++++++++ 20000
 //Tropentarn
     ["OPT4_O_T_APC_Wheeled_02_rcws_ghex_F", DEF_PROD(0)],       // MSE-3 Marid 50000
     ["OPT_O_APC_Wheeled_03_cannon_light_F", DEF_PROD(0)],       // AFV-4 Gorgon (Leicht) 90000
@@ -268,10 +268,10 @@ GVAR(csat_supplies) =
     ["OPT_Box_East_WpsSpecial_F", 60000, 10000, 20000],                     // Munition spezial kiste
     ["OPT_Box_East_Grenades_F", 75000, 10000, 20000],                       // granatenkiste
     ["OPT_CSAT_Sprengstoffkiste", 150000, 10000, 20000],                    // sprengstoffkiste
-    ["OPT_Box_East_WpsSpecial_AT_F", 30000, 10000, 20000],                  // AT Raketenkiste (RPG-42)
-    ["OPT_Box_East_WpsSpecial_AA_F", 40000, 10000, 20000],                  // AA Raketenkiste
+    ["OPT_Box_East_WpsSpecial_AT_F", 130000, 10000, 20000],                  // AT Raketenkiste (RPG-42)
+    ["OPT_Box_East_WpsSpecial_AA_F", 140000, 10000, 20000],                  // AA Raketenkiste
     ["OPT_O_supplyCrate_F", DEF_PROD(500)],                                 // Transportkiste
-    ["OPT_O_CargoNet_01_ammo_F", DEF_PROD(5000)],                           // Ausrstungskiste
+    ["OPT_O_CargoNet_01_ammo_F", DEF_PROD(0)],                           // Ausrstungskiste
     ["OPT_Box_East_WpsSpecial_Diver_F", DEF_PROD(5000)],                    // Taucherkiste
     ["OPT_Box_East_WpsLaunch_F", DEF_PROD(0)],                              // HAT-Kiste (Titan)
     ["OPT_O_T_UGV_01_ghex_F", DEF_PROD(0)],                                 // UGV Saif    
@@ -281,7 +281,7 @@ GVAR(csat_supplies) =
     ["OPT4_ACE_Box_82mm_Mo_HE", DEF_PROD(100000)],                          // Mörsermuni
     ["OPT_Land_Pod_Heli_Transport_04_fuel_F", DEF_PROD(8000)],              // Fuelcontainer
     ["OPT_Land_Pod_Heli_Transport_04_fuel_black_F", DEF_PROD(0)],           // Fuelcontainer (schwarz)
-    ["OPT_Land_Pod_Heli_Transport_04_ammo_F", 90000, 10000, 20000],         // Munitionscontainer
+    ["OPT_Land_Pod_Heli_Transport_04_ammo_F", 0, 0, 0],         // Munitionscontainer
     ["OPT_Land_Pod_Heli_Transport_04_ammo_black_F", DEF_PROD(0)],           // Munitionscontainer (Schwarz)
     ["OPT_Land_Pod_Heli_Transport_04_repair_F", DEF_PROD(8000)],            // Reparaturcontainer
     ["OPT_Land_Pod_Heli_Transport_04_repair_black_F", DEF_PROD(0)],         // Reparaturcontainer (schwarz)
@@ -306,9 +306,9 @@ GVAR(csat_static) =
 [
     ["OPT_O_HMG_01_high_F", DEF_PROD(10000)],                       // Stand-MG hoch
     ["OPT_O_HMG_01_F", DEF_PROD(10000)],                            // Stand-MG niedrig
-    ["OPT_O_GMG_01_high_F", DEF_PROD(15000)],                       // Stand-GMG hoch
-    ["OPT_O_GMG_01_F", DEF_PROD(15000)],                            // Stand-GMG niedrig
-    ["OPT_O_static_AA_F", DEF_PROD(25000)],                         // Stand-AA
+    ["OPT_O_GMG_01_high_F", DEF_PROD(75000)],                       // Stand-GMG hoch
+    ["OPT_O_GMG_01_F", DEF_PROD(75000)],                            // Stand-GMG niedrig
+    ["OPT_O_static_AA_F", DEF_PROD(50000)],                         // Stand-AA
     ["OPT_O_static_AT_F", DEF_PROD(150000)],                        // Stand-AT
     ["OPT_O_Mortar_01_F", DEF_PROD(50000)],                         // MK6 Mrser
     ["B_Mortar_01_F", DEF_PROD(110000)],                            // MK6 - Mrser

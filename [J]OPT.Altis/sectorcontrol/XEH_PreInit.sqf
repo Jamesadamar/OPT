@@ -11,6 +11,4 @@ ADDON = true;
 // CBA settings
 [] call FUNC(initCBASettings);
 
-if (isServer) then {
-    [] call FUNC(setup_flagPositions);
-};
+[] call FUNC(setup_flagPositions);

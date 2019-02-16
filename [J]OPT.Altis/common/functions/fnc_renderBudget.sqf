@@ -39,27 +39,27 @@ if (_budget_field isEqualTo controlNull) exitWith{};
 
 /* CODE BODY */
 private _side = PLAYER_SIDE;
-private _side_Budget = if (_side == west) then {GVARMAIN(nato_budget)} else {GVARMAIN(csat_budget)};
+private _sideBudget = [GVARMAIN(westBudget), GVARMAIN(eastBudget)] select (_side isEqualTo east);
 
-private _txt = if (_side_Budget > 1e6-1) then 
+private _txt = if (_sideBudget > 1e6-1) then 
 {
-    format ["Budget: %1 Mio. €", str(_side_Budget / BUDGET_REDUCE_WHEN_BIGGER)];    // psycho: budget muss numerisch reduziert werden um Darstellung aufrecht zu erhalten
+    format ["Budget: %1 Mio. €", str(_sideBudget / BUDGET_REDUCE_WHEN_BIGGER)];    // psycho: budget muss numerisch reduziert werden um Darstellung aufrecht zu erhalten
 } 
 else 
 {
-    format ["Budget: %1 €", str(_side_Budget)];
+    format ["Budget: %1 €", str(_sideBudget)];
 };
 
 // Warnung, wenn Budget niedrig wird
-if (_side_Budget < BUDGET_WARN_WHEN_LOWER) then 
+if (_sideBudget < BUDGET_WARN_WHEN_LOWER) then 
 {
     _budget_field ctrlSetTextColor [0.97, 0.63, 0.02, 1];
 };
 
 // Falls Budget negativ: Zeige Dispo
-if (_side_Budget < 0) then 
+if (_sideBudget < 0) then 
 {
-    _txt = format["Dispo: %1 €", str(_side_Budget)];
+    _txt = format["Dispo: %1 €", str(_sideBudget)];
     _budget_field ctrlSetTextColor [1,0,0,1];
 };
 

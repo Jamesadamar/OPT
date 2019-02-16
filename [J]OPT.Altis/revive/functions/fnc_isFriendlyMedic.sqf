@@ -18,23 +18,15 @@ params ["_unit"];
 
 private _return = false;
 
-_isMedic = _unit call FUNC(isMedic);
-
 if
 (
     alive _unit and
     (UNIT_SIDE(_unit)) isEqualTo (PLAYER_SIDE) and
     _unit getVariable ["FAR_isUnconscious", 0] == 0 and
-    (_isMedic or FAR_REVIVE_MODE > 0)
+    _unit call FUNC(isMedic)
 ) then
 {
-    _return = if (FAR_REVIVE_MODE > 2 and !_isMedic) then
-    {
-        false
-    } else
-    {
-        true
-    };
+   _return = true;
 };
 
 _return

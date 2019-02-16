@@ -19,14 +19,14 @@
 // siehe mission\functions\fnc_chooseFlag für Details
 
 // fallback if no flag was chosen -> random war!
-if (count GVARMAIN(nato_flags) == 0) then { 
-    GVARMAIN(nato_flags) = [selectRandom (allMissionObjects "FlagPole_F" select {_x getVariable "owner" == west})];
-    publicVariable QGVARMAIN(nato_flags);
+if (count GVARMAIN(westFlags) == 0) then { 
+    GVARMAIN(westFlags) = [selectRandom (allMissionObjects "FlagPole_F" select {_x getVariable "owner" == west})];
+    publicVariable QGVARMAIN(westFlags);
 };
 
-if (count GVARMAIN(csat_flags) == 0) then { 
-    GVARMAIN(csat_flags) = [selectRandom (allMissionObjects "FlagPole_F" select {_x getVariable "owner" == east})];
-    publicVariable QGVARMAIN(csat_flags);
+if (count GVARMAIN(eastFlags) == 0) then { 
+    GVARMAIN(eastFlags) = [selectRandom (allMissionObjects "FlagPole_F" select {_x getVariable "owner" == east})];
+    publicVariable QGVARMAIN(eastFlags);
 };
 
 /*
@@ -41,7 +41,7 @@ unverwundbar, Logistik-Script aus sowie Actionmeneintrag fuer Spieler
         private _markerName = format["marker_%1_%2", _x, _forEachIndex];
         private _marker = createMarker [_markerName, getPos _x];
 
-        if (_x in GVARMAIN(csat_flags)) then {
+        if (_x in GVARMAIN(eastFlags)) then {
             _marker setMarkerType "flag_CSAT";
         } else {
             _marker setMarkerType "flag_NATO";
@@ -77,4 +77,4 @@ unverwundbar, Logistik-Script aus sowie Actionmeneintrag fuer Spieler
    
     _x allowDamage false;  // Flagge kann nicht beschaedigt werden
 
-} foreach (GVARMAIN(csat_flags) + GVARMAIN(nato_flags));
+} foreach (GVARMAIN(eastFlags) + GVARMAIN(westFlags));

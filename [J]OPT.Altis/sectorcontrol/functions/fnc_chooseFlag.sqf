@@ -24,7 +24,7 @@ private _flagMarker = [];
                 _flagMarker pushBack _marker;
             };
 
-            if (_x in GVARMAIN(csat_flags)) then {
+            if (_x in GVARMAIN(eastFlags)) then {
                 private _markerName = format["marker_active_flag"];
                 private _marker = createMarkerLocal [_markerName, getPos _x];
                 _marker setMarkerTypeLocal "selector_selectedMission";
@@ -42,7 +42,7 @@ private _flagMarker = [];
                 _flagMarker pushBack _marker;
             };
 
-            if (_x in GVARMAIN(nato_flags)) then {
+            if (_x in GVARMAIN(westFlags)) then {
                 private _markerName = format["marker_active_flag"];
                 private _marker = createMarkerLocal [_markerName, getPos _x];
                 _marker setMarkerTypeLocal "selector_selectedMission";
@@ -73,12 +73,21 @@ private _flagMarker = [];
         _marker setMarkerTypeLocal "selector_selectedMission";
         _marker setMarkerSizeLocal [2,2];
 
-        switch (PLAYER_SIDE) do {
-            case west: {
-                _marker setMarkerColorLocal "ColorBLUFOR"; GVARMAIN(csat_flags) = [_flag]; publicVariable QGVARMAIN(csat_flags);
+        switch (PLAYER_SIDE) do 
+        {
+            case west: 
+            {
+                _marker setMarkerColorLocal "ColorBLUFOR"; 
+                GVARMAIN(eastFlags) = [_flag]; 
+                publicVariable QGVARMAIN(eastFlags);
+
             };
-            case east: {
-                _marker setMarkerColorLocal "ColorOPFOR"; GVARMAIN(nato_flags) = [_flag]; publicVariable QGVARMAIN(nato_flags);
+            case east:
+            {
+                _marker setMarkerColorLocal "ColorOPFOR"; 
+                GVARMAIN(westFlags) = [_flag]; 
+                publicVariable QGVARMAIN(westFlags);
+
             };
         };
 

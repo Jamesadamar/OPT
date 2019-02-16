@@ -32,21 +32,21 @@ private _edit_csat_x = _dialog displayCtrl CSAT_X_IDC;
 private _edit_csat_y = _dialog displayCtrl CSAT_Y_IDC;
 
 // read in coordinates
-if (count GVARMAIN(nato_flags) == 0) then {
+if (count GVARMAIN(westFlags) == 0) then {
     _edit_nato_x ctrlSetText format["%1", 0];
     _edit_nato_y ctrlSetText format["%1", 0];
 } else {
-    private _nato_flag = GVARMAIN(nato_flags) select 0;
+    private _nato_flag = GVARMAIN(westFlags) select 0;
     // set coordinates
     _edit_nato_x ctrlSetText format["%1", getPos _nato_flag select 0];
     _edit_nato_y ctrlSetText format["%1", getPos _nato_flag select 1];
 };
 
-if (count GVARMAIN(csat_flags) == 0) then {
+if (count GVARMAIN(eastFlags) == 0) then {
     _edit_csat_x ctrlSetText format["%1", 0];
     _edit_csat_y ctrlSetText format["%1", 0];
 } else {
-    private _csat_flag = GVARMAIN(csat_flags) select 0;
+    private _csat_flag = GVARMAIN(eastFlags) select 0;
     _edit_csat_x ctrlSetText format["%1", getPos _csat_flag select 0];
     _edit_csat_y ctrlSetText format["%1", getPos _csat_flag select 1];
 };

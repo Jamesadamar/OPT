@@ -22,7 +22,7 @@
 * no - effects are local on server until broadcasted to clients
 *
 * Sideeffects:
-* increase GVARMAIN(csat_points) or GVARMAIN(nato_points) by 1 if conditions are met + publicVar
+* increase GVARMAIN(eastPoints) or GVARMAIN(westPoints) by 1 if conditions are met + publicVar
 * 
 * Example:
 * [] call EFUNC(sectorcontrol,calcPoints);
@@ -34,27 +34,27 @@ if !(GVARMAIN(dominator) isEqualTo sideUnknown) then {
 
     if (GVARMAIN(dominator) isEqualTo east) then {
 
-        GVARMAIN(csat_points) = GVARMAIN(csat_points) + 1;
-        publicVariable QGVARMAIN(csat_points);
+        GVARMAIN(eastPoints) = GVARMAIN(eastPoints) + 1;
+        publicVariable QGVARMAIN(eastPoints);
 
-        _message = format ["CSAT +1 (NATO %1 | CSAT %2)", GVARMAIN(nato_points), GVARMAIN(csat_points)];
+        _message = format ["CSAT +1 (NATO %1 | CSAT %2)", GVARMAIN(westPoints), GVARMAIN(eastPoints)];
         ["Punkte", _message] call EFUNC(log,write);
 
     };
 
     if (GVARMAIN(dominator) isEqualTo west) then {
 
-        GVARMAIN(nato_points) = GVARMAIN(nato_points)  + 1;
-        publicVariable QGVARMAIN(nato_points);
+        GVARMAIN(westPoints) = GVARMAIN(westPoints)  + 1;
+        publicVariable QGVARMAIN(westPoints);
 
-        _message = format ["NATO +1 (NATO %1 | CSAT %2)", GVARMAIN(nato_points), GVARMAIN(csat_points)];
+        _message = format ["NATO +1 (NATO %1 | CSAT %2)", GVARMAIN(westPoints), GVARMAIN(eastPoints)];
         ["Punkte", _message] call EFUNC(log,write);
 
     };
         
 } else {
 
-        _message = format ["Kein Dominator (NATO %1 | CSAT %2)", GVARMAIN(nato_points), GVARMAIN(csat_points)];
+        _message = format ["Kein Dominator (NATO %1 | CSAT %2)", GVARMAIN(westPoints), GVARMAIN(eastPoints)];
         ["Punkte", _message] call EFUNC(log,write);
 
 };

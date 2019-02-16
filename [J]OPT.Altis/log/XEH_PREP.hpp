@@ -2,6 +2,7 @@
 PREP(initCBAClassEvents);
 PREP(initCBASettings);
 PREP(logFPS);
+PREP(logPlayerCount);
 PREP(storeFPS);
 PREP(updatePlayerList);
 PREP(write);

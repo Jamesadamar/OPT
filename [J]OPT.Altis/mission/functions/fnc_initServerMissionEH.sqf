@@ -14,28 +14,6 @@
 */
 #include "script_component.hpp"
 
-GVAR(EH_PlayerConnected) = addMissionEventHandler
-[
-    "PlayerConnected",
-    {
-        /*
-        id: Number - unique DirectPlay ID (very large number). It is also the same id used for user placed markers (same as _id param)
-        uid: String - getPlayerUID of the joining client. The same as Steam ID (same as _uid param)
-        name: String - profileName of the joining client (same as _name param)
-        jip: Boolean - didJIP of the joining client (same as _jip param)
-        owner: Number - owner id of the joining client (same as _owner param)
-        */
-        params ["_id", "_uid", "_name", "_jip", "_owner"];
-        //LOG_2("PlayerConnected - jip: %1 - owner: %2",_jip,_owner);
-
-        if (OPT_PARAM_SHOW_INTRO and !EGVAR(training,on) and !(_jip)) then
-        {
-            [] remoteExec [QFUNC(intro), _owner, false];
-        };
-
-    }
-];
-
 GVAR(EH_EntityRespawned) = addMissionEventHandler
 [
     "EntityRespawned",
@@ -49,7 +27,7 @@ GVAR(EH_EntityRespawned) = addMissionEventHandler
             [_newEntity] remoteExecCall [QEFUNC(common,addToCurator), 2, false];
 
             // Kosten für Seite abziehen + log
-            private _cost = [] call FUNC(respawnCost);
+            private _cost = [] call EFUNC(common,respawnCost);
 
             [
                 UNIT_NAME(_newEntity),
@@ -63,10 +41,6 @@ GVAR(EH_EntityRespawned) = addMissionEventHandler
 
             // reset earplugs
             {GVAR(earplugsInUse) = 1;} remoteExecCall ["call", _newEntity, false];
-
-            // give backpack back to player
-            // fix BackpackonChest Bug #15
-            [] remoteExecCall [QFUNC(addBackpack), _newEntity, true];
 
         };
 
@@ -120,5 +94,9 @@ GVAR(EH_PlayerDisconnected) = addMissionEventHandler
             };
 
         };
+
+        if !(_jip) then {
+            HASH_REM(GVAR(introHash),_uid); // remove player from intro hash so that we do not wait infinitely
+        }
     }
 ];

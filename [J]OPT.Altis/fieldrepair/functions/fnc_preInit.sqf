@@ -1,6 +1,9 @@
 /**
-* Author: James
-* initialize variables for this component
+* Description:
+* define variable for hard repair parts
+*
+* Author:
+* James
 *
 * Arguments:
 * None
@@ -8,13 +11,56 @@
 * Return Value:
 * None
 *
-* Example:
-* [] call fnc_preInit.sqf;
+* Server only:
+* no
 *
+* Public:
+* no - should be called only once at mission start via XEH_PreInit.sqf
+*
+* Global:
+* no
+*
+* Sideeffects:
+* no
+*
+* Example:
+* [] call EFUNC(fieldrepair,preInit);
 */
 #include "script_component.hpp"
 
-GVAR(repair_hps) = ["HitLFWheel", "HitLBWheel", "HitLMWheel", "HitLF2Wheel", "HitRFWheel", "HitRBWheel", "HitRMWheel","HitRF2Wheel", "HitEngine", "HitLTrack","HitRTrack", "HitHull", "HitWinch"] + ["HitEngine1", "HitEngine2", "HitEngine3", "HitFuel", "HitAvionics", "HitVRotor", "HitHRotor", "HitHydraulics", "HitGear", "HitTail", "HitPitotTube", "HitStaticPort"];
-GVAR(hardRepairParts) = ["HitEngine", "HitLTrack", "HitRTrack", "HitHull"] + ["HitEngine1", "HitEngine2", "HitEngine3", "HitFuel", "HitAvionics", "HitHRotor", "HitHydraulics", "HitGear", "HitTail"];
+/* PARAMS */
 
-GVAR(mutexAction) = false;
+/* VALIDATION */
+
+/* CODE BODY */
+GVAR(hardRepairParts) =
+[
+	"HitAmmo",
+	"HitAvionics",
+	"HitEngine",
+	"HitFuel",
+	"HitFuel2",
+	"HitFuelL",
+	"HitFuelR",
+	"HitFuelTank",
+	"HitGear",
+	"HitGun",
+	"HitHRotor",
+	"HitHull",
+	"HitHydraulics",
+	"HitLAileron",
+	"HitLCElevator",
+	"HitLCRudder",
+	"HitLTrack",
+	"HitMissiles",
+	"HitOptic",
+	"HitRAileron",
+	"HitRElevator",
+	"HitRotor",
+	"HitRotorVirtual",
+	"HitRRudder",
+	"HitRTrack",
+	"HitTail",
+	"HitTurret",
+	"HitVRotor"
+];
