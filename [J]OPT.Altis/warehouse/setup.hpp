@@ -1,3 +1,0 @@
-/**
-* Bestellsystem ORDER DIALOG
-*/
